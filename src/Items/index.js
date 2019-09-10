@@ -3,6 +3,7 @@ import AddItem from './AddItem'
 import Bins from '../Bins'
 import SignIn from '../SignIn'
 // import UploadImage from './Upload'
+import ItemList from './ItemList'
 
 class Items extends Component {
     state = {
@@ -53,6 +54,7 @@ class Items extends Component {
                 items: [...this.state.items, 
                     parsedResponse.data]  
             })
+            console.log(this.state)
 
             return parsedResponse;
         }   catch(err){
@@ -63,15 +65,16 @@ class Items extends Component {
     render(){
         return(
             <div>
-                Add Items
+              boogie woogie 
                 <SignIn signIn={this.props.signIn}/>
                 <AddItem uid={this.props.uid} 
-                    addItem={this.addItem}/>
+                    addItemSql={this.addItemSql}/>
                 <Bins uid={this.props.uid} 
                         username={this.props.username}
                         userId={this.props.userId}
                 />
                 {/* <UploadImage/> */}
+                <ItemList props={this.state}/>
             </div>
         )
     }

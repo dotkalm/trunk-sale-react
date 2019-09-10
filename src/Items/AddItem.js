@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase'
-import cryptoRandmString from 'crypto-random-string'
+//import cryptoRandmString from 'crypto-random-string'
 
 class AddItem extends Component {
     state = {
@@ -20,7 +20,7 @@ class AddItem extends Component {
     uploadImage = async (e) => {
         const cryptoRandomString = require('crypto-random-string')
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
-        const { image, link } = this.state
+        const { image } = this.state
         const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
         console.log(`${filename}${fileExtension}`)
         e.preventDefault()
@@ -35,19 +35,20 @@ class AddItem extends Component {
         //e.preventDefault();
         this.setState({link: url})
         console.log(this.state.link, 'state inside of sqlUpload function')
-        // const data = new FormData();
-        // data.append('file', this.state.image);
-        // data.append('description', this.state.description);
-        // data.append('location', this.state.location);
-        // data.append('price', 12.12);
-        // data.append('bin', 1)
-        // const registerCall = this.props.addItemSql(data);
-        // registerCall.then((data) => {
-        //     if(data.status.message === 'success'){
-        //     } else {
-        //         console.log(data, 'error message')
-        //     }
-        // })
+        const data = new FormData();
+        data.append('file', this.state.image);
+        data.append('description', this.state.description);
+        data.append('image', this.state.link);
+        data.append('price', 12.12);
+        data.append('bin', 1)
+        const registerCall = this.props.addItemSql(data);
+        registerCall.then((data) => {
+            if(data.status.message === 'success'){
+                
+             } else {
+                 console.log(data, 'error message')
+             }
+         })
     }
     render(){
         
@@ -60,6 +61,7 @@ class AddItem extends Component {
                     <input placeholder='description' type='text'
                         name='description' 
                         onChange={this.handleChange}/>
+                       <input name='' onChange={this.handleChange}/> 
                     <input name='image' type='file' 
                         onChange={this.handleChange}/>
                     <button type='submit'>gotcha</button>

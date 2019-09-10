@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { withFirebase } from '../Firebase'
 import * as ROUTES from '../constants/routes'
+//import cryptoRandmString from 'crypto-random-string'
 
 const SignUp = (props) => {
   return (
@@ -37,10 +38,12 @@ class SignUpFormBase extends Component {
         })
       })
       .then(() =>  {
+        const cryptoRandomString = require('crypto-random-string')
         this.props.history.push(ROUTES.ITEMS)
         this.props.sqlUser({
             username: this.state.username,
-            uid: this.state.uid
+            uid: this.state.uid,
+            id: +cryptoRandomString({length: 10, characters: '1234567890'})
         })
       })
       .catch(error => {
@@ -55,6 +58,7 @@ class SignUpFormBase extends Component {
   }
 
   render() {
+      
     const {
       username,
       email,

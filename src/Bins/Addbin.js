@@ -15,7 +15,6 @@ class Postbin extends Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(this.props)
         const data = new FormData();
         data.append('size', this.state.size);
         data.append('userId', this.props.userId)
