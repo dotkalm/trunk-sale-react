@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import Firebase, { FirebaseContext } from '../Firebase'
+import { withFirebase } from '../Firebase'
 
 class AddItem extends Component {
     state = {
@@ -15,7 +15,12 @@ class AddItem extends Component {
       }
     }
     uploadImage = async (e) => {
+        const { image } = this.state
         e.preventDefault()
+        debugger
+        this.props.firebase.storage.ref('cars').child(image.name).put(image)
+            .then(file => file.ref.getDownloadURL())
+            .then(url => console.log(url))
    //     const storage = app.storage();
 //        const storageRef = storage.ref();
 //        const itemRef = storageRef.child('item.jpg')
@@ -61,4 +66,4 @@ class AddItem extends Component {
     }
 
 }
-export default AddItem
+export default withFirebase(AddItem)
