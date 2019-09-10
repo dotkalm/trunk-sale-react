@@ -6,7 +6,7 @@ import { withFirebase } from '../Firebase'
 const UploadImage = (props) => {
     return(
     <div> 
-        <UploadImageForm fuerta={props} /> 
+        <UploadImageForm  /> 
     </div>
     )
 } 
@@ -17,9 +17,16 @@ class UploadImageFormBase extends Component {
 
     onSubmit = event => {
         event.preventDefault()
-        const { image } = this.state
-        this.props.firebase.put(image)
+        console.log(this.props,' <--this.props',
+            this.state, '<--- this.state')
     }
+    onChange = e =>{
+        if(e.target.name !== 'image'){
+        this.setState({[e.target.name]: e.target.value});
+      } else {
+        this.setState({image: e.target.files[0]});
+      }
+    } 
     render(){
         return(
             <form onSubmit={this.onSubmit}>
