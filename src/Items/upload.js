@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { withFirebase } from '../Firebase'
-import * as ROUTES from '../constants/routes'
+//import * as ROUTES from '../constants/routes'
 
 const UploadImage = (props) => {
     return(
@@ -16,19 +16,22 @@ class UploadImageFormBase extends Component {
     }
 
     onSubmit = event => {
-        const { } = this.state
         event.preventDefault()
-        this.props.firebase.put(file)
+        const { image } = this.state
+        this.props.firebase.put(image)
     }
     render(){
         return(
-        <div>
-            HELLO u
-        </div>
+            <form onSubmit={this.onSubmit}>
+                <input name='image' type='file'
+            onChange={this.handleChange}/>
+                <button type='submit'>Upload</button>
+            </form>
         )
     }
 }
 
-const UploadImageForm = withRouter(withFirebase(UploadImageFormBase))
+const UploadImageForm = withRouter(
+    withFirebase(UploadImageFormBase))
 
 export default UploadImage

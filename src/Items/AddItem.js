@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Firebase, { FirebaseContext } from '../Firebase'
+// import Firebase, { FirebaseContext } from '../Firebase'
 
 class AddItem extends Component {
     state = {

@@ -39,7 +39,8 @@ class SignInFormBase extends Component {
   render() {
     const { email, password, error } = this.state
     return (
-      <form onSubmit={this.onSubmit}><input 
+      <form onSubmit={this.onSubmit}>
+        <input 
           name='email'
           type='text'
           value={email}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-// import AddItem from './AddItem'
+import AddItem from './AddItem'
 import Bins from '../Bins'
 import SignIn from '../SignIn'
-import 
+import UploadImage from './Upload'
+
 class Items extends Component {
     state = {
         items: [],
@@ -17,14 +18,16 @@ class Items extends Component {
 
     getItems = async () => {
         try {
-            const responseGetItems = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/items/`, { 
+            const responseGetItems = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/api/v1/items/`, { 
                 credentials: 'include',
                 method: 'GET'
             })
             if(responseGetItems.status !== 200){
                 throw Error('404 from server');
             }
-            const itemResponse = await responseGetItems.json()
+            const itemResponse = await 
+                responseGetItems.json()
             return itemResponse.data
         } catch(err){
             console.log(err, '<- get item error')
@@ -35,7 +38,8 @@ class Items extends Component {
     addItemSql = async (data) => {
         try {
             const registerResponse = await 
-                 fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/items/`, {
+                 fetch(`${process.env.REACT_APP_BACKEND_URL
+                     }/api/v1/items/`, {
                  method: 'POST',
                  credentials: 'include',
                  body: data,
@@ -43,9 +47,11 @@ class Items extends Component {
                     'enctype': 'multipart/form-data'
                  }
             })
-            const parsedResponse = await registerResponse.json();
+            const parsedResponse = await 
+                registerResponse.json();
             this.setState({
-                items: [...this.state.items, parsedResponse.data]  
+                items: [...this.state.items, 
+                    parsedResponse.data]  
             })
 
             return parsedResponse;
@@ -59,10 +65,13 @@ class Items extends Component {
             <div>
                 Add Items
                 <SignIn signIn={this.props.signIn}/>
+                <AddItem uid={this.props.uid} 
+                    addItem={this.addItem}/>
                 <Bins uid={this.props.uid} 
                         username={this.props.username}
                         userId={this.props.userId}
                 />
+                <UploadImage/>
             </div>
         )
     }
