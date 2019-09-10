@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AddItem from './AddItem'
 import Bins from '../Bins'
 import SignIn from '../SignIn'
-import UploadImage from './Upload'
+// import UploadImage from './Upload'
 
 class Items extends Component {
     state = {
@@ -71,7 +71,7 @@ class Items extends Component {
                         username={this.props.username}
                         userId={this.props.userId}
                 />
-                <UploadImage/>
+                {/* <UploadImage/> */}
             </div>
         )
     }

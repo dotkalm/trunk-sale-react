@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase'
+import cryptoRandmString from 'crypto-random-string'
 
 class AddItem extends Component {
     state = {
@@ -14,22 +15,17 @@ class AddItem extends Component {
         this.setState({image: e.target.files[0]});
       }
     }
+    
     uploadImage = async (e) => {
+        const cryptoRandomString = require('crypto-random-string')
+        const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
         const { image } = this.state
+        const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
+        console.log(`${filename}${fileExtension}`)
         e.preventDefault()
-        debugger
-        this.props.firebase.storage.ref('cars').child(image.name).put(image)
+        this.props.firebase.storage.ref('cars').child(`${filename}${fileExtension}`).put(image)
             .then(file => file.ref.getDownloadURL())
             .then(url => console.log(url))
-   //     const storage = app.storage();
-//        const storageRef = storage.ref();
-//        const itemRef = storageRef.child('item.jpg')
-//        const file = this.state.image
-        console.log(this.props)
-       // ref.put(file).then(function(snapshot){
-         //   console.log('uploaded a file!');
-       // })
-
     }
     handleSubmit = async () => {
         //e.preventDefault();
@@ -48,6 +44,7 @@ class AddItem extends Component {
         })
     }
     render(){
+        
         return(
             <div>
                 <form onSubmit={this.uploadImage}>
