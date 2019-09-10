@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Addbin from './Addbin'
+import Binlist from './Binlist'
 
 class Bins extends Component {
     state = {
@@ -7,15 +8,14 @@ class Bins extends Component {
     }
     async componentDidMount(){
         const allBins = await this.getBins();
-
         this.setState({
-          bins: [...allBins]
+            bins: [...allBins]
         })
     }
 
     getBins = async () => {
         try {
-            const responseGetBins = await fetch('http://localhost:8000/api/v1/', {   
+            const responseGetBins = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/bins/`, {   
                 credentials: 'include',
                 method: 'GET'
             })
@@ -32,7 +32,7 @@ class Bins extends Component {
     
     addBin = async (data) => {
         try {
-            const registerResponse = await fetch('http://localhost:8000/api/v1/', {
+            const registerResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/bins/`, {
                  method: 'POST',
                  credentials: 'include',
                  body: data,
@@ -52,11 +52,13 @@ class Bins extends Component {
     }
     
     render(){
-        console.log(this.state.bins)
         return(
             <div>
-                HI EVERYONE
-                <Addbin addBin={this.addBin}/>
+               Add Bins 
+                <Addbin addBin={this.addBin} 
+                    uid={this.props.uid}
+                    userId={this.props.userId}/>
+                <Binlist bins={this.state.bins}/>
             </div>
         )
     }

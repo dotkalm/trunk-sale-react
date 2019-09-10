@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 class Postbin extends Component {
     state = {
-        image: {},
-        location: '',
-        description: ''
+        size: '',
+        uid: '',
+        userId: '',
     }
     handleChange = (e) => {
         if(e.target.name !== 'image'){
@@ -15,11 +15,10 @@ class Postbin extends Component {
     }
     handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(this.props)
         const data = new FormData();
-        data.append('file', this.state.image);
-        data.append('description', this.state.description);
-        data.append('location', this.state.location);
-        data.append('price', 12.12);
+        data.append('size', this.state.size);
+        data.append('userId', this.props.userId)
         const registerCall = this.props.addBin(data);
         registerCall.then((data) => {
             if(data.status.message === 'success'){
@@ -33,14 +32,10 @@ class Postbin extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     Bin Details: <br/>
-                    <input placeholder='location' type='text' name='location'
+                    <input placeholder='size' type='text'
+                        name='size' 
                         onChange={this.handleChange}/>
-                    <input placeholder='description' type='text'
-                        name='description' 
-                        onChange={this.handleChange}/>
-                    <input name='image' type='file' 
-                        onChange={this.handleChange}/>
-                    <button type='submit'>POST</button>
+                    <button type='submit'>Add Bin</button>
                 </form>
             </div>
         )
