@@ -6,7 +6,8 @@ class AddItem extends Component {
     state = {
         image: {},
         location: '',
-        description: ''
+        description: '',
+        link: ''
     }
     handleChange = (e) => {
         if(e.target.name !== 'image'){
@@ -19,29 +20,34 @@ class AddItem extends Component {
     uploadImage = async (e) => {
         const cryptoRandomString = require('crypto-random-string')
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
-        const { image } = this.state
+        const { image, link } = this.state
         const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
         console.log(`${filename}${fileExtension}`)
         e.preventDefault()
-        this.props.firebase.storage.ref('cars').child(`${filename}${fileExtension}`).put(image)
+        this.props.firebase.storage.ref('trunk/').child(`${filename}${fileExtension}`).put(image)
             .then(file => file.ref.getDownloadURL())
-            .then(url => console.log(url))
-    }
-    handleSubmit = async () => {
-        //e.preventDefault();
-        const data = new FormData();
-        data.append('file', this.state.image);
-        data.append('description', this.state.description);
-        data.append('location', this.state.location);
-        data.append('price', 12.12);
-        data.append('bin', 1)
-        const registerCall = this.props.addItemSql(data);
-        registerCall.then((data) => {
-            if(data.status.message === 'success'){
-            } else {
-                console.log(data, 'error message')
-            }
+            .then(url => {
+                this.sqlUpload(url)
         })
+        
+    }
+    sqlUpload = async (url) => {
+        //e.preventDefault();
+        this.setState({link: url})
+        console.log(this.state.link, 'state inside of sqlUpload function')
+        // const data = new FormData();
+        // data.append('file', this.state.image);
+        // data.append('description', this.state.description);
+        // data.append('location', this.state.location);
+        // data.append('price', 12.12);
+        // data.append('bin', 1)
+        // const registerCall = this.props.addItemSql(data);
+        // registerCall.then((data) => {
+        //     if(data.status.message === 'success'){
+        //     } else {
+        //         console.log(data, 'error message')
+        //     }
+        // })
     }
     render(){
         
