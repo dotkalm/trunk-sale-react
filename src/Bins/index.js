@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Addbin from './Addbin'
 import Binlist from './Binlist'
+import Items from '../Items'
 
 class Bins extends Component {
     state = {
@@ -11,6 +12,7 @@ class Bins extends Component {
         this.setState({
             bins: [...allBins]
         })
+        this.props.binCall(this.state.bins, '<--- bins/index')
     }
 
     getBins = async () => {
@@ -23,6 +25,7 @@ class Bins extends Component {
                 throw Error('404 from server');
             }
             const binResponse = await responseGetBins.json()
+            console.log(this.props, 'this.props bins/index')
             return binResponse.data
         } catch(err){
             console.log(err, '<- get bin error')
@@ -44,7 +47,7 @@ class Bins extends Component {
             this.setState({
                 bins: [...this.state.bins, parsedResponse.data]  
             })
-
+            this.props.binCall(this.state.bins)
             return parsedResponse;
         }   catch(err){
             return err
@@ -57,6 +60,7 @@ class Bins extends Component {
                Add Bins 
                 <Addbin addBin={this.addBin} 
                     uid={this.props.uid}
+                    bins={this.state.bins}
                     userId={this.props.userId}/>
                 <Binlist bins={this.state.bins}/>
             </div>

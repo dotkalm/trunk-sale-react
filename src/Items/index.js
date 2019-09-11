@@ -6,9 +6,12 @@ import SignIn from '../SignIn'
 import ItemList from './ItemList'
 
 class Items extends Component {
+
     state = {
         items: [],
+        bins: []
     }
+
     async componentDidMount(){
         const allItems = await this.getItems();
 
@@ -17,6 +20,12 @@ class Items extends Component {
         })
     }
 
+    binCall = async (binList) => {
+        this.setState({
+            bins: [...binList]
+        })
+    }
+    
     getItems = async () => {
         try {
             const responseGetItems = await fetch(
@@ -54,7 +63,6 @@ class Items extends Component {
                 items: [...this.state.items, 
                     parsedResponse.data]  
             })
-            console.log(this.state)
 
             return parsedResponse;
         }   catch(err){
@@ -63,17 +71,20 @@ class Items extends Component {
     }
     
     render(){
+        console.log(this.state.bins, '<-- this.state.bins Items')
         return(
-            <div>
-              boogie woogie 
+            <div key='1'>
+             Things In My Car That I Want To Sell 
+            welcome {this.props.username}
                 <SignIn signIn={this.props.signIn}/>
-                <AddItem uid={this.props.uid} 
+                <AddItem id={this.props.userId}
+                    bins={this.state.bins}
                     addItemSql={this.addItemSql}/>
                 <Bins uid={this.props.uid} 
                         username={this.props.username}
+                        binCall={this.binCall}
                         userId={this.props.userId}
                 />
-                {/* <UploadImage/> */}
                 <ItemList props={this.state}/>
             </div>
         )

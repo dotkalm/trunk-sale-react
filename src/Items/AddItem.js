@@ -7,7 +7,9 @@ class AddItem extends Component {
         image: {},
         location: '',
         description: '',
-        link: ''
+        link: '',
+        bin: 1,
+        bins: this.props.bins
     }
     handleChange = (e) => {
         if(e.target.name !== 'image'){
@@ -40,7 +42,7 @@ class AddItem extends Component {
         data.append('description', this.state.description);
         data.append('image', this.state.link);
         data.append('price', 12.12);
-        data.append('bin', 1)
+        data.append('bin', this.state.bin)
         const registerCall = this.props.addItemSql(data);
         registerCall.then((data) => {
             if(data.status.message === 'success'){
@@ -50,19 +52,32 @@ class AddItem extends Component {
              }
          })
     }
-    //map out drop down to select bin
+   
     render(){
-        
+         //map out drop down to select bin
+         const theBins = this.props.bins.filter(
+             bin => {
+                return bin.userId.id === this.props.id
+             }).map((e,i,array)=>{
+             console.log(e, 'e in add item bin map')
+             return(
+                     <option key={e.size} value={e.id}>
+                        {e.size}
+                    </option>
+                )
+        })
+    console.log(this.state, '<---- this.state')
         return(
             <div>
                 <form onSubmit={this.uploadImage}>
                     Bin Details: <br/>
-                    <input placeholder='location' type='text' name='location'
-                        onChange={this.handleChange}/>
+                    <select name='bin' onChange={this.handleChange}> 
+                        {theBins}
+                    </select>
                     <input placeholder='description' type='text'
                         name='description' 
                         onChange={this.handleChange}/>
-                       <input name='' onChange={this.handleChange}/> 
+                    
                     <input name='image' type='file' 
                         onChange={this.handleChange}/>
                     <button type='submit'>gotcha</button>
