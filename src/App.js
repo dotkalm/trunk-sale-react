@@ -37,7 +37,6 @@ class App extends Component {
     }
     sqlUser = async (data) => {
         try{
-                console.log(data)
                 const registerResponse = await fetch(`${
                 process.env.REACT_APP_BACKEND_URL}/user/register`, {
                 method: 'POST',
