@@ -71,7 +71,6 @@ class Items extends Component {
     }
     
     render(){
-        console.log(this.state.bins, '<-- this.state.bins Items')
         return(
             <div key='1'>
              Things In My Car That I Want To Sell 

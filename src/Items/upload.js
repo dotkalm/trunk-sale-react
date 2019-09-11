@@ -17,8 +17,7 @@ class UploadImageFormBase extends Component {
 
     onSubmit = event => {
         event.preventDefault()
-        console.log(this.props,' <--this.props',
-            this.state, '<--- this.state')
+     
     }
     onChange = e =>{
         if(e.target.name !== 'image'){

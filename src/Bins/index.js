@@ -25,7 +25,6 @@ class Bins extends Component {
                 throw Error('404 from server');
             }
             const binResponse = await responseGetBins.json()
-            console.log(this.props, 'this.props bins/index')
             return binResponse.data
         } catch(err){
             console.log(err, '<- get bin error')

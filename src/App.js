@@ -26,7 +26,6 @@ class App extends Component {
                     }
             })
             const response = await logResponse.json()
-            console.log(response.data[0])
             this.setState({
                 username: response.data[0]['username'],
                 userId: response.data[0]['id'],
@@ -38,7 +37,6 @@ class App extends Component {
     }
     sqlUser = async (data) => {
         try{
-                console.log(data,'<---before adding to db')
                 const registerResponse = await fetch(`${
                 process.env.REACT_APP_BACKEND_URL
                 }/user/register`, {
@@ -55,7 +53,6 @@ class App extends Component {
                 username: data.username,
                 userId: response.data.id,
             })
-            console.log(response.data)
 
         } catch(err){
             console.log(err)

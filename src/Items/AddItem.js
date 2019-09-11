@@ -24,7 +24,6 @@ class AddItem extends Component {
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
         const { image } = this.state
         const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
-        console.log(`${filename}${fileExtension}`)
         e.preventDefault()
         this.props.firebase.storage.ref('trunk/').child(`${filename}${fileExtension}`).put(image)
             .then(file => file.ref.getDownloadURL())
@@ -36,7 +35,6 @@ class AddItem extends Component {
     sqlUpload = async (url) => {
         //e.preventDefault();
         this.setState({link: url})
-        console.log(this.state.link, 'state inside of sqlUpload function')
         const data = new FormData();
         data.append('file', this.state.image);
         data.append('description', this.state.description);
@@ -59,14 +57,12 @@ class AddItem extends Component {
              bin => {
                 return bin.userId.id === this.props.id
              }).map((e,i,array)=>{
-             console.log(e, 'e in add item bin map')
              return(
                      <option key={e.size} value={e.id}>
                         {e.size}
                     </option>
                 )
         })
-    console.log(this.state, '<---- this.state')
         return(
             <div>
                 <form onSubmit={this.uploadImage}>

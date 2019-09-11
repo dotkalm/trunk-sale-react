@@ -30,7 +30,6 @@ class SignInFormBase extends Component {
       .catch(error => {
         this.setState({error})
       })
-    console.log(this.props.firebase.auth)
     this.props.signIn(this.props.firebase.auth.W) 
   }
 

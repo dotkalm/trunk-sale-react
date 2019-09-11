@@ -31,7 +31,6 @@ const ItemList = (props) => {
             </ItemMap>
         )
     })
-    console.log(props.props.items, '<-- items in itemslist')
     
     return(
         <Container>
