@@ -4,13 +4,13 @@ import 'firebase/firestore'
 import 'firebase/storage'
 
 const config = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID
+    apiKey: "AIzaSyD_ifwft2MI_ybwEIUgMIiPAb-Cbcrm9gA",
+    authDomain: "notes-appa.firebaseapp.com",
+    databaseURL: "https://notes-appa.firebaseio.com",
+    projectId: "notes-appa",
+    storageBucket: "notes-appa.appspot.com",
+    messagingSenderId: "643153747485",
+    appId: "1:643153747485:web:8d26fb539a59de28"
 };
 class Firebase {
   constructor() {
