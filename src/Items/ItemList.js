@@ -21,6 +21,10 @@ const ItemList = (props) => {
             >
             <p>
                 {e.description}
+            <br/>
+               located in {e.bin.size}
+            <br/>
+                added by {e.bin.userId.username}
             </p>
             <img src = {e.image} alt={e.description} 
             />
