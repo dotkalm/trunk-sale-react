@@ -50,6 +50,7 @@ class AddItem extends Component {
              }
          })
     }
+    //map out drop down to select bin
     render(){
         
         return(
