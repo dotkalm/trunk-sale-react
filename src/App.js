@@ -17,7 +17,7 @@ class App extends Component {
     signIn= async (uid) => {
         try{
             const logResponse = await fetch(`${
-                process.env.REACT_APP_BACKEND_URL}/user/logIn`, {
+                process.env.REACT_APP_BACKEND_URL}/user/logIn/`, {
                     method: 'POST',
                     credentials: 'include',
                     body: JSON.stringify(uid),
@@ -39,7 +39,7 @@ class App extends Component {
         try{
                 const registerResponse = await fetch(`${
                 process.env.REACT_APP_BACKEND_URL
-                }/user/register`, {
+                }user/register`, {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(data),
