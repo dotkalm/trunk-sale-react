@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react
 import { withRouter, NavLink } from 'react-router-dom'
 
 import { withFirebase } from '../Firebase'
