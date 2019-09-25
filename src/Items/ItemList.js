@@ -39,10 +39,7 @@ const ItemList = (props) => {
                 onClick={() => setItem(e.id)}
                 >delete</button>
             </form>
-            : 
-            
-            
-            'bye'}
+            : null}
 
                 added by {e.bin.userId.username}
             <img src = {e.image} alt={e.description} 
