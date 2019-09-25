@@ -1,7 +1,8 @@
 import React from 'react'
 import { 
     ItemMap,
-    Container
+    Container,
+    ItemPadding
 } from './style'
 
 const ItemList = (props) => {
@@ -15,8 +16,11 @@ const ItemList = (props) => {
         const g = e.average_green
         const b = e.average_blue
         return(
+            <ItemPadding
+                key ={`ItemPadding_${i}`}
+                color ={`rgb(${255-r},${255-g},${255-b})`} >
             <ItemMap 
-                 key={e.image.replace(/^.+token=/,'')}
+                 key={`ItemMap_${i}`}
                 color={`rgb(${r},${g},${b})`}
             >
             <p>
@@ -29,6 +33,7 @@ const ItemList = (props) => {
             <img src = {e.image} alt={e.description} 
             />
             </ItemMap>
+            </ItemPadding>
         )
     })
     
