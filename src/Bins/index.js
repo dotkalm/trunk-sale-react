@@ -61,7 +61,6 @@ class Bins extends Component {
                     uid={this.props.uid}
                     bins={this.state.bins}
                     userId={this.props.userId}/>
-                <Binlist bins={this.state.bins}/>
             </div>
         )
     }

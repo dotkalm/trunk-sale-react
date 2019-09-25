@@ -2,23 +2,25 @@ import React, { Component } from 'react'
 import { withFirebase } from '../Firebase'
 //import cryptoRandmString from 'crypto-random-string'
 
+
+const binArray = []
 class AddItem extends Component {
     state = {
         image: {},
         location: '',
         description: '',
         link: '',
-        bin: 1,
+        bin: 0,
         bins: this.props.bins
     }
     handleChange = (e) => {
+        console.log(this.state)
         if(e.target.name !== 'image'){
         this.setState({[e.target.name]: e.target.value});
         } else {
         this.setState({image: e.target.files[0]});
       }
     }
-    
     uploadImage = async (e) => {
         const cryptoRandomString = require('crypto-random-string')
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
@@ -33,14 +35,18 @@ class AddItem extends Component {
         
     }
     sqlUpload = async (url) => {
-        //e.preventDefault();
         this.setState({link: url})
         const data = new FormData();
         data.append('file', this.state.image);
         data.append('description', this.state.description);
         data.append('image', this.state.link);
         data.append('price', 12.12);
-        data.append('bin', this.state.bin)
+        if(this.state.bin === 0){
+            data.append('bin', binArray[binArray.length -1])
+            console.log(binArray)
+        } else {
+            data.append('bin', this.state.bin)
+        }        
         const registerCall = this.props.addItemSql(data);
         registerCall.then((data) => {
             if(data.status.message === 'success'){
@@ -57,17 +63,22 @@ class AddItem extends Component {
              bin => {
                 return bin.userId.id === this.props.id
              }).map((e,i,array)=>{
+                  if (i === 0){
+                    console.log(e)
+                    binArray.push(e.id)
+                  }
              return(
-                     <option key={e.size} value={e.id}>
+                     <option key={e.size} value={e.id} >
                         {e.size}
                     </option>
                 )
         })
         return(
             <div>
-                <form onSubmit={this.uploadImage}>
+                <form onSubmit={this.uploadImage} >
                     Bin Details: <br/>
-                    <select name='bin' onChange={this.handleChange}> 
+                    <select name='bin' onChange={e => 
+                        this.setState({bin:+e.target.value})}> 
                         {theBins}
                     </select>
                     <input placeholder='description' type='text'

@@ -9,7 +9,7 @@ class Items extends Component {
 
     state = {
         items: [],
-        bins: []
+        bins: [],
     }
 
     async componentDidMount(){
@@ -44,7 +44,22 @@ class Items extends Component {
             return err
         }
     }
-    
+    deleteItem = async (id) => {
+        console.log(id)
+        try {
+             fetch(`${process.env.REACT_APP_BACKEND_URL
+                 }/api/v1/${id}`, {
+             method: 'DELETE',
+             credentials: 'include',
+             })
+            this.setState({
+                items: this.state.items.filter((item) => 
+                    item.id !== id)
+            })
+        } catch(err) {
+        console.log(err)
+        }
+    }  
     addItemSql = async (data) => {
         try {
             const registerResponse = await 
@@ -71,11 +86,12 @@ class Items extends Component {
     }
     
     render(){
+        console.log(this.props, '<-- this.props', this.state, '<-- this.state')
         return(
             <div key='1'>
              Things In My Car That I Want To Sell 
             welcome {this.props.username}
-                <SignIn signIn={this.props.signIn}/>
+            {(this.props.userId === 0) ? <SignIn signIn={this.props.signIn}/> : null}
                 <AddItem id={this.props.userId}
                     bins={this.state.bins}
                     addItemSql={this.addItemSql}/>
@@ -84,7 +100,9 @@ class Items extends Component {
                         binCall={this.binCall}
                         userId={this.props.userId}
                 />
-                <ItemList props={this.state}/>
+                <ItemList userId={this.props.userId} 
+                    deleteItem={this.deleteItem}
+                    props={this.state}/>
             </div>
         )
     }
