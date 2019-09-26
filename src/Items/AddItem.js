@@ -76,7 +76,7 @@ class AddItem extends Component {
         return(
             <div>
                 <form onSubmit={this.uploadImage} >
-                    Bin Details: <br/>
+                    Items: <br/>
                     <select name='bin' onChange={e => 
                         this.setState({bin:+e.target.value})}> 
                         {theBins}

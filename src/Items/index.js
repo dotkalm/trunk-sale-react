@@ -47,8 +47,7 @@ class Items extends Component {
     deleteItem = async (id) => {
         console.log(id)
         try {
-             fetch(`${process.env.REACT_APP_BACKEND_URL
-                 }/api/v1/${id}`, {
+             fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${id}`, {
              method: 'DELETE',
              credentials: 'include',
              })

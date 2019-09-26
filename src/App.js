@@ -5,6 +5,7 @@ import Items from './Items'
 import * as ROUTES from './constants/routes'
 import Bins from './Bins'
 import SignUp from './SignUp'
+import Boxes from './Boxes'
 
 class App extends Component {
     state = {
@@ -71,6 +72,8 @@ class App extends Component {
                         signIn={this.signIn}/>}}/>
                     <Route exact path={ROUTES.BINS} 
                         render={()=>{return<Bins uid={this.state.uid}/>}}/>
+                    <Route exact path={ROUTES.BOXES}
+                        render={()=>{return<Boxes/>}}/>
                 </Switch>
             </main>
         )
