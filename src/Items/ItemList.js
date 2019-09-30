@@ -41,8 +41,9 @@ const ItemList = (props) => {
                 </button>
             </form>
             : null}
-                
                 added by {e.bin.userId.username}
+               <img src = {e.image} 
+                   alt={e.description}/>  
         
             </ItemMap>
             </ItemPadding>

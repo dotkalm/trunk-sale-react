@@ -12,7 +12,8 @@ class AddItem extends Component {
         link: '',
         bin: 0,
         bins: this.props.bins,
-        fileName: ''
+        fileName: []
+        
     }
     handleChange = (e) => {
         console.log(this.state)
@@ -27,7 +28,7 @@ class AddItem extends Component {
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
         const { image } = this.state
         const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
-        this.setState({fileName:`${filename}${fileExtension}`})
+        this.setState({fileName:[filename, fileExtension]})
         e.preventDefault()
         this.props.firebase.storage.ref('trunk/')
             .child(`${filename}${fileExtension}`)
@@ -35,19 +36,25 @@ class AddItem extends Component {
             .then(file => file.ref.getDownloadURL())
             .then(url => {
                 this.sqlUpload(url)
+               // this.getThumb(`${filename}_200x200${fileExtension}`)
             })
-            
-                
+    }
+
+    getThumb = async (file) => {
+        console.log(file)
+        console.log(this.state)
+        const thumb = this.props.firebase.storage.ref('trunk/').child(file).getDownloadURL();
+        console.log(thumb, 'thumb url');
     }
     sqlUpload = async (url) => {
-        const thumb = this.props.firebase.storage.ref('trunk/').child(url).getDownloadURL();
-        console.log(thumb, 'thumb url');
+        console.log(this.state);
         this.setState({link: url});
         const data = new FormData();
         data.append('file', this.state.image);
         data.append('description', this.state.description);
         data.append('image', this.state.link);
         data.append('price', 12.12);
+        //data.append('fileName', this.state.fileName)
         if(this.state.bin === 0){
             data.append('bin', binArray[binArray.length -1])
             console.log(binArray)
