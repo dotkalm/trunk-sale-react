@@ -73,7 +73,12 @@ class App extends Component {
                     <Route exact path={ROUTES.BINS} 
                         render={()=>{return<Bins uid={this.state.uid}/>}}/>
                     <Route exact path={ROUTES.BOXES}
-                        render={()=>{return<Boxes/>}}/>
+                        render={(props)=>{return<Boxes
+                            uid={this.state.uid} 
+                            username={this.state.username}
+                            userId={this.state.userId}
+                            signIn={this.signIn} 
+                        />}}/>
                 </Switch>
             </main>
         )
