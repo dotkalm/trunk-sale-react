@@ -42,7 +42,8 @@ export const MapItems = styled.div`
 `
 
 export const ItemsInBoxDiv = styled.div`
-    display: grid | inline-grid 
+    display: inline-flex;
+    flex-direction: column;
 `
 
 export const BoxStyle = styled.div`
