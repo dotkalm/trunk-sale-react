@@ -20,30 +20,13 @@ export const Container = styled.div`
     background-image: linear-gradient(to bottom right, dodgerblue, pink, yellow);
 `
 export const MapItems = styled.div`
-    @media screen and (max-width: 1400px) {
-        transform: translate(37rem, -29rem);
-    }
-    @media screen and (max-width: 900px) {
-        transform: translate(26rem, -23rem);
-    }
-    @media screen and (max-width: 750px) {
-        transform: translate(19rem, -17rem);
-    }
-    @media screen and (max-width: 600px) {
-        transform: translate(14rem, -14rem);
-        font-size: 0.75rem;
-    }
-    @media screen and (max-width: 400px) {
-        transform: translate(8rem,-11rem);
-        font-size: 0.65rem;
-    }
     background-color: ${props => props.color ? props.color :"blue"};
     margin-top: .2rem
 `
 
 export const ItemsInBoxDiv = styled.div`
-    display: inline-flex;
-    flex-direction: column;
+    display: grid;
+    transform: translateY(-33rem);
 `
 
 export const BoxStyle = styled.div`

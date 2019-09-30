@@ -36,14 +36,14 @@ const ItemList = (props) => {
             {(props.userId === e.bin.userId.id) ? 
             <form onSubmit={deleteItem}>
                 <button type='submit'
-                onClick={() => setItem(e.id)}
-                >delete</button>
+                onClick={() => setItem(e.id)}>
+                    delete
+                </button>
             </form>
             : null}
-
+                
                 added by {e.bin.userId.username}
-            <img src = {e.image} alt={e.description} 
-            />
+        
             </ItemMap>
             </ItemPadding>
         )

@@ -11,7 +11,8 @@ class AddItem extends Component {
         description: '',
         link: '',
         bin: 0,
-        bins: this.props.bins
+        bins: this.props.bins,
+        fileName: ''
     }
     handleChange = (e) => {
         console.log(this.state)
@@ -26,16 +27,22 @@ class AddItem extends Component {
         const filename = `${cryptoRandomString({length: 10, characters: '1234567890'})}`
         const { image } = this.state
         const fileExtension = image.name.replace(/^\w+(-?)(\w?)+/,'')
+        this.setState({fileName:`${filename}${fileExtension}`})
         e.preventDefault()
-        this.props.firebase.storage.ref('trunk/').child(`${filename}${fileExtension}`).put(image)
+        this.props.firebase.storage.ref('trunk/')
+            .child(`${filename}${fileExtension}`)
+            .put(image)
             .then(file => file.ref.getDownloadURL())
             .then(url => {
                 this.sqlUpload(url)
-        })
-        
+            })
+            
+                
     }
     sqlUpload = async (url) => {
-        this.setState({link: url})
+        const thumb = this.props.firebase.storage.ref('trunk/').child(url).getDownloadURL();
+        console.log(thumb, 'thumb url');
+        this.setState({link: url});
         const data = new FormData();
         data.append('file', this.state.image);
         data.append('description', this.state.description);
