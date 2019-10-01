@@ -26,7 +26,8 @@ export const MapItems = styled.div`
 
 export const ItemsInBoxDiv = styled.div`
     display: grid;
-    transform: translateY(-33rem);
+    grid-auto-columns: min-content;
+    transform: translateY(-20rem);
 `
 
 export const BoxStyle = styled.div`

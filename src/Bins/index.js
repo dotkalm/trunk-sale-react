@@ -10,15 +10,16 @@ class Bins extends Component {
     async componentDidMount(){
         const allBins = await this.getBins();
         console.log(allBins, 'all bins')
-            // this.setState({
-              //   bins:[...allBins]
-            //  })
-       // this.props.binCall(this.state.bins, '<--- bins/index')
+             this.setState({
+               bins:[...allBins]
+          })
+        this.props.binCall(this.state.bins, '<--- bins/index')
     }
 
     getBins = async () => {
         try {
-            const responseGetBins = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/bins/`, {   
+            const responseGetBins = await fetch(
+                `${process.env.REACT_APP_BACKEND_URL}/api/v1/bins/`, {   
                 credentials: 'include',
                 method: 'GET'
             })
@@ -26,6 +27,7 @@ class Bins extends Component {
                 throw Error('404 from server');
             }
             const binResponse = await responseGetBins.json()
+            console.log(binResponse)
             return binResponse.data
         } catch(err){
             console.log(err, '<- get bin error')
