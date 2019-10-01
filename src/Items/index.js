@@ -93,7 +93,9 @@ class Items extends Component {
             {(this.props.userId === 0) ? <SignIn signIn={this.props.signIn}/> : null}
                 <AddItem id={this.props.userId}
                     bins={this.state.bins}
-                    addItemSql={this.addItemSql}/>
+                    addItemSql={this.addItemSql}
+                    props={this.state}/>
+
                 <Bins uid={this.props.uid} 
                         username={this.props.username}
                         binCall={this.binCall}
