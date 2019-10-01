@@ -9,10 +9,11 @@ class Bins extends Component {
     }
     async componentDidMount(){
         const allBins = await this.getBins();
-        this.setState({
-            bins: [...allBins]
-        })
-        this.props.binCall(this.state.bins, '<--- bins/index')
+        console.log(allBins, 'all bins')
+            // this.setState({
+              //   bins:[...allBins]
+            //  })
+       // this.props.binCall(this.state.bins, '<--- bins/index')
     }
 
     getBins = async () => {
