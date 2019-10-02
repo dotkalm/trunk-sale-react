@@ -20,14 +20,33 @@ export const Container = styled.div`
     background-image: linear-gradient(to bottom right, dodgerblue, pink, yellow);
 `
 export const MapItems = styled.div`
-    background-color: ${props => props.color ? props.color :"blue"};
-    margin-top: .2rem
+    background-color: ${props => props.colorHover ? props.colorHover :"blue"};
+    // grid-column: ${props => props.pos ? props.pos :8};
+    grid-auto-columns: auto;
+    margin: 1rem;
+    padding: .5rem;
+    :hover{
+        background-color: ${props => props.color ? props.color :"blue"};
+    }
 `
 
 export const ItemsInBoxDiv = styled.div`
+    
     display: grid;
-    grid-auto-columns: min-content;
-    transform: translateY(-20rem);
+    grid-template-columns: repeat(3,1fr);
+    
+    @media screen and (max-width: 1400px) {
+        transform: translateY(-35rem);
+    }
+    @media screen and (max-width: 1000px) {
+        transform: translateY(-25rem);
+    }
+    @media screen and (max-width: 800px) {
+        transform: translateY(-20rem);
+    }
+    @media screen and (max-width: 600px) {
+        transform: translateY(-15rem);
+    }
 `
 
 export const BoxStyle = styled.div`

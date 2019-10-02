@@ -25,32 +25,32 @@ const ItemList = (props) => {
         const r = e.average_red
         const g = e.average_green
         const b = e.average_blue
-        let img = ''
-        const fileURL = `trunk/${e.fileName1}_200x200${e.fileName2}`
-        const path = async => {
-            try{
-                if(thumb[i] === undefined ){
-                    props.firebase.storage.ref(fileURL).getDownloadURL()
-                        .then(promises => {
-                            setThumb({...thumb,[i]: promises}) 
-                         console.log(thumb[i])
-                    })
-                }  
-               // else if (!thumb[i].match(/^https.*/)){
-                 // props.firebase.storage.ref(fileURL).getDownloadURL()
-                   //     .then(promise => {
-                     //    console.log(promise)
-                 //  })
-               // }
-                // props.firebase.storage.ref(fileURL).getDownloadURL()
-                 //   .then(promise => {
-                   //     console.log(promise)
-                   // })
-            } catch(err){
-                console.log(err)
-            }
-        }
-        path()
+       // let img = ''
+        //const fileURL = `trunk/${e.fileName1}_200x200${e.fileName2}`
+        // const path = async => {
+        //     try{
+        //         if(thumb[i] === undefined ){
+        //             props.firebase.storage.ref(fileURL).getDownloadURL()
+        //                 .then(promises => {
+        //                     setThumb({...thumb,[e.description]: promises}) 
+        //                  console.log(thumb[i])
+        //             })
+        //         }  
+        //        // else if (!thumb[i].match(/^https.*/)){
+        //          // props.firebase.storage.ref(fileURL).getDownloadURL()
+        //            //     .then(promise => {
+        //              //    console.log(promise)
+        //          //  })
+        //        // }
+        //         // props.firebase.storage.ref(fileURL).getDownloadURL()
+        //          //   .then(promise => {
+        //            //     console.log(promise)
+        //            // })
+        //     } catch(err){
+        //         console.log(err)
+        //     }
+        // }
+        // path()
         return(
             <ItemPadding
                 key ={`ItemPadding_${i}`}
@@ -71,7 +71,7 @@ const ItemList = (props) => {
             </form>
             : null}
                 added by {e.bin.userId.username}
-               <img src = {thumb[i]} 
+               <img src = {e.image} 
                    alt={e.description}/>  
         
             </ItemMap>

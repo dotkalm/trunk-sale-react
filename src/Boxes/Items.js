@@ -32,9 +32,10 @@ const ItemsInBoxes = (props) => {
             const b = e.average_blue
             return (
                 <MapItems key={i} 
-                    border={`rgb(${r},${g},${b})`} 
-                    color={`rgb(${255-r},${g},${255-b})`}
-                    onMouseOver={console.log(e.description)} >
+                    color={`rgb(${255-r},${g},${255-b},.4)`}
+                    colorHover={`rgb(${255-r},${g},${255-b})`}
+                    // pos={i}
+                >
                 
                     {e && e.description}
                     <br/>
