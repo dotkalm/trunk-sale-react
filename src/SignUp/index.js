@@ -43,7 +43,7 @@ class SignUpFormBase extends Component {
         this.props.sqlUser({
             username: this.state.username,
             uid: this.state.uid,
-            id: +cryptoRandomString({length: 10, characters: '1234567890'})
+            id: +cryptoRandomString({length: 5, characters: '1234567890'})
         })
       })
       .catch(error => {
