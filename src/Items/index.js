@@ -45,7 +45,6 @@ class Items extends Component {
         }
     }
     deleteItem = async (id) => {
-        console.log(id)
         try {
              fetch(`${process.env.REACT_APP_BACKEND_URL}/api/v1/${id}`, {
              method: 'DELETE',
@@ -85,7 +84,6 @@ class Items extends Component {
     }
     
     render(){
-        console.log(this.props, '<-- this.props', this.state, '<-- this.state')
         return(
             <div key='1'>
              Things In My Car That I Want To Sell 

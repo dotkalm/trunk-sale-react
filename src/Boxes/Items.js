@@ -2,7 +2,7 @@ import Firebase from '../Firebase'
 import React, { useState, useEffect }  from 'react' 
 import { MapItems, 
 ItemsInBoxDiv} from './style' 
-//import GetThumb from './Thumbs'
+import GetColor from '../Items/Color'
 
 const ItemsInBoxes = (props) => {
 
@@ -25,17 +25,12 @@ const ItemsInBoxes = (props) => {
       })
       .catch(error => console.log(error));
   }, [page]);
-    console.log(itemsInBoxes, 'items in boxes')
     const newArray = [...itemsInBoxes]
-    for(let i=0;i<newArray.length;i++){
-        console.log(newArray[i]) 
-    }
    
 
     return(
     <ItemsInBoxDiv>
         {newArray.map((e,i) => {
-            console.log(e, 'items IN BOX')
             const r = e.average_red
             const g = e.average_green
             const b = e.average_blue
@@ -46,8 +41,8 @@ const ItemsInBoxes = (props) => {
                     // pos={i}
                 >
                 
-                    {e && e.description}
                     <br/>
+                    <GetColor color={e.color}/>
                 </MapItems>)
         })}    
     </ItemsInBoxDiv>

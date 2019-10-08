@@ -2,14 +2,31 @@ import styled from 'styled-components'
 
 export const GridDiv = styled.div`
     display: grid;
+    box-shadow: 13px 14px 20px 0px rgba(0,0,0,1);
+    @media screen and (max-width: 1400px) {
+        width: 10rem;
+        height: 7rem;
+    }
+    @media screen and (max-width: 600px) {
+        width: 6rem;
+        height: 4rem;
+    }
+    @media screen and (max-width: 400px) {
+        width: 4rem;
+        height: 2.8rem;
+    }
+    
 `
 
 export const GridColors = styled.div`
     background-color: ${props => props.color ? props.color :"blue"};
     grid-column: ${props => props.column ? props.column :10};
-    grid-row: ${props => props.row ? props.row :10};
-    height: 40px;
-    width: 40px;
+    grid-row: ${props => props.row ? props.row :0};
+    height: 100%;
+    width: 100%;
+    :hover{
+        opacity: 0;
+    }
 }
 `
 

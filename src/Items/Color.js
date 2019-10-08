@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { GridDiv, GridColors } from './style'
 
 const getColor = (props) => {
-    const colorsRaw = props.split(/\n/)
+    const colorsRaw = props.color.split(/\n/)
+    colorsRaw.pop()
     const theColors = colorsRaw.map((e,i) => {
         const coordinates = e.match(/\d+, \d+/)
         let x = null;
@@ -21,10 +22,7 @@ const getColor = (props) => {
             r = +rgb[0];
             g = +rgb[1];
             b = +rgb[2];
-            console.log(r,g,b)
         }
-        console.log(r,g,b)
-        
         return(
         <GridColors
             key={i} 

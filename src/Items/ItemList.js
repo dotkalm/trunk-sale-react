@@ -16,28 +16,21 @@ const ItemList = (props) => {
         e.preventDefault()
         props.deleteItem(item)
     }
-   // console.log(props)
-    props.props.items.sort((a,b) => ((
-        a.average_red + a.average_green + a.average_blue
-    )>(
-        b.average_red + b.average_green + b.average_blue
-    )) ? 1 : -1)
-    const theItems = props.props.items.map((e,i,array)=>{
-        const color = e.color
-        const bgColor = getColor(color) 
-        const fileURL = `trunk/${e.fileName1}_200x200${e.fileName2}`
-        const path = async () => {
-                 if(e.thumb === 'placeholder' ){
-                     let thumbURL = props.firebase.storage.ref(fileURL).getDownloadURL()
-                         .then(promises => {
-                         console.log(promises,typeof(promises))
-                             return promises
-                         })
-                     let myThumbURL = await thumbURL
-                     console.log(myThumbURL, 'thumburl')
-                 }
-               }
-        path()
+        for(let i=0;i<props.props.items.length;i++){
+             const tool = props.props.items[i]
+             const fileURL = `trunk/${tool.fileName1}_200x200${tool.fileName2}`
+             if(thumb[tool.fileName1] === undefined){
+                 let thumbURL = props.firebase.storage.ref(fileURL).getDownloadURL()
+                     .then(promises => {
+                     setThumb(thumb => {
+                         return {...thumb,[tool.fileName1]:promises}
+                     })
+                      })
+             }
+        }
+        const theItems = props.props.items.map((e,i,array)=>{
+            const color = e.color
+            
         return(
             <ItemPadding
                 key ={`ItemPadding_${i}`}
@@ -58,16 +51,19 @@ const ItemList = (props) => {
             </form>
             : null}
                 added by {e.bin.userId.username}
-               <img src = {e.image} 
-                   alt={e.description}/>  
+            {thumb[e.fileName1] ? <img src = {thumb[e.fileName1]} 
+                   alt={e.description}/> : <img src = {e.image} 
+                   alt={e.description}/> 
+            
+            } 
             </ItemMap>
-            {bgColor}
             </ItemPadding>
         )
     })
     const urlObj = async () => {
         let thumbURLs = await theItems 
     } 
+ console.log(thumb, 'state')
     return(
         <Container>
             GET AWAY FROM MY STUFF<br/>

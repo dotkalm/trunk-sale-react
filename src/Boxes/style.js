@@ -36,21 +36,27 @@ export const ItemsInBoxDiv = styled.div`
     grid-template-columns: repeat(3,1fr);
     
     @media screen and (max-width: 1400px) {
-        transform: translateY(-35rem);
+        transform: translateY(-75rem);
+    }
+    @media screen and (max-width: 1200px) {
+        transform: translateY(-65rem);
     }
     @media screen and (max-width: 1000px) {
-        transform: translateY(-25rem);
+        transform: translateY(-50rem);
     }
     @media screen and (max-width: 800px) {
-        transform: translateY(-20rem);
+        transform: translateY(-43rem);
+    }
+    @media screen and (max-width: 700px) {
+        transform: translateY(-39rem);
     }
     @media screen and (max-width: 600px) {
-        transform: translateY(-15rem);
+        transform: translateY(-36rem);
     }
 `
 
 export const BoxStyle = styled.div`
-    width: 50%;
+    width: 100%;
     height: 100%
     margin: 0 auto;
 
