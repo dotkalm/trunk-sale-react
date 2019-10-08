@@ -9,7 +9,6 @@ const Boxes = (props) => {
     return(
         <Container>
            <Headline>Things In My Car That I Want To Sell</Headline>
-            <SignIn signIn={props.signIn}/>
             <BoxSvg/>
             <ItemsInBoxes/>
             Look inside box 
