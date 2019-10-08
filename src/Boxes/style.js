@@ -51,10 +51,16 @@ export const ItemsInBoxDiv = styled.div`
         transform: translateY(-39rem);
     }
     @media screen and (max-width: 600px) {
-        transform: translateY(-36rem);
+        transform: translateY(-30rem);
+    }
+    @media screen and (max-width: 500px) {
+        transform: translateY(-28rem);
     }
     @media screen and (max-width: 400px) {
         transform: translateY(-20rem);
+    }
+    @media screen and (max-width: 300px) {
+        transform: translateY(-10rem);
     }
 `
 
