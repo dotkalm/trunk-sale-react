@@ -1,6 +1,9 @@
+import Firebase from '../Firebase'
 import React, { useState, useEffect }  from 'react' 
 import { MapItems, 
 ItemsInBoxDiv} from './style' 
+//import GetThumb from './Thumbs'
+
 const ItemsInBoxes = (props) => {
 
     const [page, setPage] = useState(1);
@@ -18,15 +21,21 @@ const ItemsInBoxes = (props) => {
       .then(res => res.json())
       .then(response => {
         setItemsInBoxes(response.data);
-        console.log(itemsInBoxes, response.data)
         setIsLoading(false);
       })
       .catch(error => console.log(error));
   }, [page]);
-    console.log(itemsInBoxes)
+    console.log(itemsInBoxes, 'items in boxes')
+    const newArray = [...itemsInBoxes]
+    for(let i=0;i<newArray.length;i++){
+        console.log(newArray[i]) 
+    }
+   
+
     return(
     <ItemsInBoxDiv>
-        {itemsInBoxes.map((e,i) => {
+        {newArray.map((e,i) => {
+            console.log(e, 'items IN BOX')
             const r = e.average_red
             const g = e.average_green
             const b = e.average_blue

@@ -1,5 +1,16 @@
 import styled from 'styled-components'
 
+export const GridDiv = styled.div`
+    display: grid;
+`
+
+export const GridColors = styled.div`
+    background-color: ${props => props.color ? props.color :"blue"};
+    grid-column: ${props => props.column ? props.column :10};
+    grid-row: ${props => props.row ? props.row :10};
+}
+`
+
 export const ItemPadding = styled.div`
     padding: 1rem;
     background-color: ${props => props.color ? props.color :"blue"}

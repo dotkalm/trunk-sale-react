@@ -54,6 +54,7 @@ class AddItem extends Component {
         data.append('description', this.state.description);
         data.append('image', this.state.link);
         data.append('price', 12.12);
+        data.append('thumb','placeholder')
         data.append('fileName1', this.state.fileName[0])
         data.append('fileName2', this.state.fileName[1])
         if(this.state.bin === 0){
