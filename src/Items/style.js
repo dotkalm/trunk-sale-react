@@ -24,9 +24,6 @@ export const GridColors = styled.div`
     grid-row: ${props => props.row ? props.row :0};
     height: 100%;
     width: 100%;
-    :hover{
-        opacity: 0;
-    }
 }
 `
 

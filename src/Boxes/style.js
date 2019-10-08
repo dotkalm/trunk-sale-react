@@ -9,7 +9,7 @@ export const Headline = styled.div`
         font-size: 2rem
     }
     @media screen and (max-width: 400px) {
-        font-size: 1ree
+        font-size: 1.5rem
     }
 
     `
@@ -52,6 +52,9 @@ export const ItemsInBoxDiv = styled.div`
     }
     @media screen and (max-width: 600px) {
         transform: translateY(-36rem);
+    }
+    @media screen and (max-width: 400px) {
+        transform: translateY(-26rem);
     }
 `
 
