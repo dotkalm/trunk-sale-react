@@ -9,17 +9,30 @@ const getColor = (props) => {
         let y = null;
         if(coordinates !== null){
             const xY = coordinates[0].split(', ')
-            console.log(xY)
-            x = +xY[0]
-            y = +xY[1]
+            x = +xY[0] +1
+            y = +xY[1] +1
         }
+        let r = null;
+        let g = null;
+        let b = null;
+        const rgbColors = e.replace(/.+\t/,'').replace(/\(|\)/g,'')
+        if(rgbColors !== ''){
+            const rgb = rgbColors.split(', ') 
+            r = +rgb[0];
+            g = +rgb[1];
+            b = +rgb[2];
+            console.log(r,g,b)
+        }
+        console.log(r,g,b)
+        
         return(
         <GridColors
             key={i} 
             column={x} 
             row={y}
+            color={`rgb(${r},${g},${b})`}
             >
-            {coordinates !== null ? `${x} .... ${y}` : ''}
+            {coordinates !== null ? ` ` : ''}
         </GridColors>
         
         )

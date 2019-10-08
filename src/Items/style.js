@@ -8,6 +8,8 @@ export const GridColors = styled.div`
     background-color: ${props => props.color ? props.color :"blue"};
     grid-column: ${props => props.column ? props.column :10};
     grid-row: ${props => props.row ? props.row :10};
+    height: 40px;
+    width: 40px;
 }
 `
 
