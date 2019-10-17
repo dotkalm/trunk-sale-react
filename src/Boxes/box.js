@@ -4,7 +4,7 @@ const BoxSvg = (props) => {
 
     return(
     <BoxStyle>
-    <svg x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 100 100">
+    <svg x="0px" y="0px" viewBox="0 0 100 100" >
     <defs>
     <linearGradient id="leftWall" gradientTransform="rotate(5)">
       <stop offset="10%"   stopColor="#b9865c" />

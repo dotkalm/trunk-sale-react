@@ -20,14 +20,12 @@ export const Container = styled.div`
     background-image: linear-gradient(to bottom right, dodgerblue, pink, yellow);
 `
 export const MapItems = styled.div`
-    background-color: ${props => props.colorHover ? props.colorHover :"blue"};
+    background-color: ${props => props.color ? props.color :"green"};
     // grid-column: ${props => props.pos ? props.pos :8};
     grid-auto-columns: auto;
     margin: 1rem;
     padding: .5rem;
-    :hover{
-        background-color: ${props => props.color ? props.color :"blue"};
-    }
+    position: relative
 `
 
 export const ItemsInBoxDiv = styled.div`
@@ -36,28 +34,28 @@ export const ItemsInBoxDiv = styled.div`
     grid-template-columns: repeat(3,1fr);
     
     @media screen and (max-width: 1400px) {
-        transform: translateY(-75rem);
+        transform: translateY(-55rem);
     }
     @media screen and (max-width: 1200px) {
-        transform: translateY(-65rem);
+        transform: translateY(-45rem);
     }
     @media screen and (max-width: 1000px) {
-        transform: translateY(-50rem);
+        transform: translateY(-35rem);
     }
     @media screen and (max-width: 800px) {
-        transform: translateY(-43rem);
-    }
-    @media screen and (max-width: 700px) {
-        transform: translateY(-39rem);
-    }
-    @media screen and (max-width: 600px) {
         transform: translateY(-30rem);
     }
+    @media screen and (max-width: 700px) {
+        transform: translateY(-25rem);
+    }
+    @media screen and (max-width: 600px) {
+        transform: translateY(-15rem);
+    }
     @media screen and (max-width: 500px) {
-        transform: translateY(-28rem);
+        transform: translateY(-18rem);
     }
     @media screen and (max-width: 400px) {
-        transform: translateY(-20rem);
+        transform: translateY(-10rem);
     }
     @media screen and (max-width: 300px) {
         transform: translateY(-10rem);
@@ -65,7 +63,7 @@ export const ItemsInBoxDiv = styled.div`
 `
 
 export const BoxStyle = styled.div`
-    width: 100%;
+    width: 70%;
     height: 100%
     margin: 0 auto;
 

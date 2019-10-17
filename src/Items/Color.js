@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { GridDiv, GridColors } from './style'
+import { ThemeContext } from 'styled-components';
 
 const getColor = (props) => {
+    let alphaChannel = 1
+    // add a css class that will change the opacity 
     const colorsRaw = props.color.split(/\n/)
     colorsRaw.pop()
-    const theColors = colorsRaw.map((e,i) => {
+    const clickEvent = (e) => {
+        e.preventDefault()
+        alphaChannel = 0
+        props.areaWasClicked(e.target)
+    }
+    const theColors = colorsRaw.map((e,i,array) => {
         const coordinates = e.match(/\d+, \d+/)
         let x = null;
         let y = null;
@@ -22,14 +30,29 @@ const getColor = (props) => {
             r = +rgb[0];
             g = +rgb[1];
             b = +rgb[2];
+            
         }
+        const ixyrgb = `${i}${x}${y}${r}${g}${b}` 
+        let styles = {}
+        props.wasClicked[ixyrgb] ? 
+            styles = {
+                display: 'none'
+            }
+            : 
+            styles={}                    
         return(
+                        
         <GridColors
+            id={ixyrgb}
             key={i} 
             column={x} 
             row={y}
-            color={`rgb(${r},${g},${b})`}
-            >
+            color={`rgb(${r},${g},${b},.95)`}
+            style={styles}
+            onMouseEnter={(e) => {
+                props.areaWasClicked(e.target.id)
+            }}>
+           
             {coordinates !== null ? ` ` : ''}
         </GridColors>
         
@@ -37,7 +60,10 @@ const getColor = (props) => {
     })
         return(
         <GridDiv>
-            {theColors}
+            {props.thumb !== undefined ? <img src ={props.thumb} alt={props.description}/> : null}
+
+                        {theColors}
+    
         </GridDiv>
     
     )
